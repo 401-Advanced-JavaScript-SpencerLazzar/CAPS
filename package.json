@@ -1,0 +1,26 @@
+{
+  "name": "CAPS",
+  "version": "1.0.0",
+  "description": "A real-time service that allows for vendors, such as flower shops or restaurants, to alert a system of a package needing to be delivered, for drivers to instantly see what’s in their pickup queue, and then to alert the vendors as to the state of the deliveries (in transit, and then delivered).",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/401-Advanced-JavaScript-SpencerLazzar/CAPS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/401-Advanced-JavaScript-SpencerLazzar/CAPS/issues"
+  },
+  "homepage": "https://github.com/401-Advanced-JavaScript-SpencerLazzar/CAPS#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "event-emitter": "^0.3.5",
+    "express": "^4.17.1"
+  }
+}
