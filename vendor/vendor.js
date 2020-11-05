@@ -23,7 +23,6 @@ client.on('data', function (data) {
     messages.push(event.payload);
     console.clear();
     messages.forEach(message => console.log(message));
-    console.log('');
   }
 });
 
@@ -42,35 +41,15 @@ async function getInput() {
   getInput();
 }
 
-// Get their name
+// Get their order
 async function getOrder() {
   console.clear();
   let input = await inquirer.prompt([{ 'name': 'name', 'message': 'What is the order?' }])
-  order = input.order;
+  name = input.name;
+  console.log(name);
 }
 
 getOrder();
 getInput();
 
 
-
-// const storeName = 'BurgerHaus';
-
-
-// function run() {
-//   setInterval(() => {
-//     const payload = {
-//       store: storeName,
-//       orderID: 'e3669048-7313-427b-b6cc-74010ca1f8f0',
-//       customer: 'Russell Wilson',
-//       address: 'Rosyln, WA',
-//     }
-//     eventManager.emit('pickup', 'pickup', payload);
-//   }, 5000);
-// }
-
-// eventManager.on('delivered', () => {
-//   console.log('VENDOR: Thank you for delivering ' + payload.orderID);
-// })
-
-// module.exports = run;
