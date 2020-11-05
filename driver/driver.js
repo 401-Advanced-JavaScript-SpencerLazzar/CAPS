@@ -1,6 +1,4 @@
 const net = require('net');
-// const eventEmmitter = require('events');
-// const eventManager = new eventEmmitter;
 const client = new net.Socket();
 
 const host = process.env.HOST || 'localhost';

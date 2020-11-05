@@ -1,28 +1,35 @@
-const net = require('net');
-
-const port = process.env.PORT || 3000;
-const server = net.createServer();
-
-
-server.listen(port, () => console.log('Server up on port ', port));
+const path = require('path');
+const http = require('http');
+const express = require('express');
+const socketio = require('socket.io');
 
 
-const socketPool = {}
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+const PORT = 3000 || process.env.PORT;
 
-server.on('connection', (socket) => {
+
+
+io.on('connection', socket => {
+  console.log('New WebSocket Connection..');
+
   const id = `Socket-${Math.random()}`;
   socketPool[id] = socket;
+
   console.log('Socket connection', id);
+
   socket.on('data', (buffer) => dispatchEvent(buffer));
+
   socket.on('error', (e) => { console.error('SOCKET ERROR', e) });
+
   socket.on('end', (e) => { delete socketPool[id] });
   broadcast('Just checking')
 });
 
-server.on('error', (e) => {
+io.on('error', (e) => {
   console.error('SERVER ERROR', e.message);
 });
-
 
 function dispatchEvent(buffer) {
   let message = JSON.parse(buffer.toString().trim());
@@ -36,5 +43,10 @@ function broadcast(message) {
   for (let socketID in socketPool) {
     const socket = socketPool[socketID];
     socket.write(payload);
+    console.log(payload);
   }
 }
+
+
+server.listen(PORT, () => console.log(`Server running on port, ${PORT}`));
+
