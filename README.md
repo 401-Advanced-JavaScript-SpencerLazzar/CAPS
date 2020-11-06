@@ -56,3 +56,7 @@ And as developers, here are some of the development stories that are relevant to
 As a developer, I want to use industry standards for managing the state of each package
 As a developer, I want to create an event driven system so that I can write code that happens in response to events, in real time
 Technical Requirements / Note
+
+### Phase 4 Requirements
+
+Build a set of applications to manage deliveries made by CAPS Drivers. This will simulate a delivery driver delivering a package and scanning the package code. Retailers will be able to see in their dashboard or log, a list of all packages delivered in real time. Should a delivery driver deliver many packages while the retailer is not connected to the dashboard, the retailer should be able to “catch up” and see a list of all missed events before resuming real-time monitoring.
