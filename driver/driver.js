@@ -1,21 +1,23 @@
-const net = require('net');
-const client = new net.Socket();
-
-const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 3000;
-client.connect(port, host, () => console.log('client connected on port ', port));
 
 
-client.on('pickup', (payload) => {
+const io = require('socket.io-client');
 
-  setTimeout(() => {
-    console.log(`DRIVER: picked up ${payload.orderID}`);
-    events.emit('in-transit', payload);
-  }, 1000);
+const driverSocket = io.connect('http://localhost:3000');
+
+driverSocket.emit('getPickups');
+
+driverSocket.on('pickup', (payload) => {
+
+  driverSocket.emit('recieved', payload.orderID);
 
   setTimeout(() => {
-    console.log(`DRIVER: delivered up ${payload.orderID}`);
-    events.emit('delivered', payload);
+    console.log('picking up', payload.orderID);
+
+    driverSocket.emit('inTransit', payload);
+  }, 1500);
+
+  setTimeout(() => {
+    console.log('delivered', payload.orderID);
+    driverSocket.emit('delivered', payload);
   }, 3000);
-
 });
